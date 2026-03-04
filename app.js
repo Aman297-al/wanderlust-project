@@ -98,12 +98,18 @@ app.use((req, res, next) => {
 });
 
 
-// ================== Routes ==================
+
+// ================== Root Route ==================
+
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
+
+// ====================Express router use=========
 
 app.use("/listings", listings);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
-
 
 // ================== 404 Handler ==================
 
