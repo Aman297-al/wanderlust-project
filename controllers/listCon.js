@@ -117,6 +117,7 @@ module.exports.deleteListing = async (req, res) => {
 };
 
 
+
 module.exports.index = async (req, res) => {
   try {
     let { category, search } = req.query;
