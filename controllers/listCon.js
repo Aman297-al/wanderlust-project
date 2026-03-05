@@ -81,8 +81,7 @@ module.exports.editListing =   async (req, res) => {
     req.flash("error", "listing does not exist!");
     return res.redirect("/listings");
   }
-  res.render("listings/edit.ejs", { listing });
-
+ 
 let originalImageUrl = listing.image.url;
 originalImageUrl = originalImageUrl.replace("/upload", "/upload/w_300") ;
 res.render("listings/edit.ejs", { listing, originalImageUrl});
@@ -107,6 +106,15 @@ module.exports.updateListing = async (req, res) => {
   res.redirect("/listings");
 };
 
+
+module.exports.deleteListing = async (req, res) => {
+  let { id } = req.params;
+
+  await Listing.findByIdAndDelete(id);
+
+  req.flash("success", "Listing Deleted!");
+  res.redirect("/listings");
+};
 
 
 module.exports.index = async (req, res) => {
